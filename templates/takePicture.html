@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>WebRTC Camera Example</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="hero">
+      <div class="navbar">
+        <img src="/static/images/agh_logo.png" alt="Logo Agh" class="logo" />
+      </div>
+      <div class="photoTaker">
+        <h2 class="h22">Take a picture to log in</h2>
+        <video id="camera" autoplay class="video"></video>
+        <button id="capture" class="loginPhoto">Take Photo</button>
+
+        <script>
+          const camera = document.getElementById("camera");
+          const captureBtn = document.getElementById("capture");
+          let stream;
+          let canvas;
+
+          captureBtn.addEventListener("click", async () => {
+            canvas = document.createElement("canvas");
+            canvas.width = camera.videoWidth;
+            canvas.height = camera.videoHeight;
+            canvas
+              .getContext("2d")
+              .drawImage(camera, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob(uploadImage, "image/jpeg");
+            stopCameraStream();
+            camera.style.display = "none";
+            captureBtn.style.display = "none";
+            location.href = "/access";
+          });
+
+          async function getCameraStream() {
+            stream = await navigator.mediaDevices.getUserMedia({
+              video: true,
+              audio: false,
+            });
+            camera.srcObject = stream;
+          }
+
+          function stopCameraStream() {
+            stream.getTracks().forEach((track) => track.stop());
+          }
+
+          function uploadImage(blob) {
+            const formData = new FormData();
+            formData.append("photo", blob, "photo.jpg");
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/upload");
+            xhr.send(formData);
+          }
+
+          getCameraStream();
+          window.addEventListener("unload", stopCameraStream);
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

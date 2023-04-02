@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="hero">
+      <div class="navbar">
+        <img src="/static/images/agh_logo.png" alt="Logo Agh" class="logo" />
+      </div>
+      <div class="photoTaker">
+        {% if access %}
+        <h2 class="h23">Acceess Granted !</h2>
+        <img
+          src="/static/images/accessGranted.png"
+          alt="Access Granted"
+          class="image1"
+        />
+        <button
+          type="button"
+          onclick="window.location.href='/home'"
+          class="button btn3"
+        >
+          Back to Home Page
+        </button>
+        {% endif %} {% if access is false%}
+        <h2 class="h23">Acceess Denied!</h2>
+        <img
+          src="/static/images/accessdenied.png"
+          alt="Access denied"
+          class="image1"
+        />
+        <button
+          type="button"
+          onclick="window.location.href='/takePicture'"
+          class="button takePicture"
+        >
+          Take new Photo
+        </button>
+        <button
+          type="button"
+          onclick="window.location.href='/login'"
+          class="button newID"
+        >
+          Enter new ID
+        </button>
+        <button
+          type="button"
+          onclick="window.location.href='/home'"
+          class="button backToHomePage"
+        >
+          Back to Home Page
+        </button>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

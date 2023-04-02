@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="hero">
+      <div class="navbar">
+        <img src="/static/images/agh_logo.png" alt="Logo Agh" class="logo" />
+      </div>
+      <div class="login2">
+        <h2>First authentication step</h2>
+        <br />
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <p class="flash">{{messages[0]}}</p>
+        {% endif %} {% endwith %}
+
+        <form method="POST" action="/getID">
+          <div class="enterId">
+            <label for="lastname">Enter your ID</label><br />
+            <input type="text" id="ID" name="ID" placeholder="ID" required />
+          </div>
+          <br /><br />
+          <button type="submit" class="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

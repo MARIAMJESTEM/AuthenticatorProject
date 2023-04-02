@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="hero">
+      <div class="navbar">
+        <img src="/static/images/agh_logo.png" alt="Logo Agh" class="logo" />
+        <button type="button" onclick="window.location.href='/login'">
+          Sign In
+        </button>
+      </div>
+      <div class="content">
+        <p class="p1">Welcome To</p>
+        <h1>Authenticator page</h1>
+        <button type="button" onclick="myFunction()">How it works?</button>
+        <p id="demo" class="pText" style="display: none">
+          The goal of this project is to develop a system that performs person
+          authentication based on facial recognition. The system uses a siamese
+          neural network, a type of artificial intelligence, to compare a
+          person's face from a database to a newly taken photo in real-time. The
+          siamese neural network calculates a similarity score between the two
+          images, which is used to authenticate the person's identity. This
+          technology can be applied to various industries, such as security
+          systems and access control, to improve efficiency and security.
+        </p>
+        <script>
+          function myFunction() {
+            var demo = document.getElementById("demo");
+            if (demo.style.display === "none") {
+              demo.style.display = "block";
+            } else {
+              demo.style.display = "none";
+            }
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
